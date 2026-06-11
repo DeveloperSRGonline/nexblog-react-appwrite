@@ -49,3 +49,26 @@
 `________`- `attributes[columns]`  
     - `Storage`  
     - `Functions`
+
+
+* Variables prefixed with VITE_ will be exposed in client-side source code after Vite bundling.
+
+# Env Variables
+
+Vite exposes env variables under the `import.meta.env` object as strings automatically.
+
+Variables prefixed with `VITE_` will be exposed in client-side source code after Vite bundling. To prevent accidentally leaking env variables to the client, avoid using this prefix. As an example, consider the following:
+
+## `.env`
+
+```env
+VITE_SOME_KEY=123
+DB_PASSWORD=foobar
+````
+
+The parsed value of `VITE_SOME_KEY` – `"123"` – will be exposed on the client, but the value of `DB_PASSWORD` will not. You can test this by adding the following to your code:
+
+```js
+console.log(import.meta.env.VITE_SOME_KEY) // "123"
+console.log(import.meta.env.DB_PASSWORD) // undefined
+```
