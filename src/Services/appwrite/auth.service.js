@@ -45,6 +45,14 @@ export class AuthService{
         return null;
     }
 
+    async Logout(){
+        try {
+            await this.account.deleteSessions()
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 const authService = new AuthService()
