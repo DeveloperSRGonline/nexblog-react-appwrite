@@ -75,7 +75,7 @@ console.log(import.meta.env.DB_PASSWORD); // undefined
 
 ---
 
-_title_: Email and password login  
+_title_: Email and password login [https://appwrite.io/docs/products/auth/email-password]
 _description_: Implement email and password authentication with Appwrite. Securely register and authenticate users in your applications using Appwrite's robust email-based authentication system.
 
 ---
