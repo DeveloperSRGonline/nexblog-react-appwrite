@@ -157,3 +157,17 @@ async getCurrentUser(){
         return null;
     }
 ```
+
+# Logout
+
+Delete session is actually logout in appwrite.
+
+```javascript
+async Logout(){
+        try {
+            await this.account.deleteSessions()
+        } catch (error) {
+            throw error;
+        }
+    }
+```
