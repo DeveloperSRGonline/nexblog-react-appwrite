@@ -90,6 +90,19 @@ export class Service{
             return false
         }
     }
+
+    async uploadFile(file){
+        try {
+            return await this.storage.createFile(
+                appwriteConfig.appwriteStorageId,
+                ID.unique(),
+                file
+            )
+        } catch (error) {
+            throw error
+            return false
+        }
+    }
 }
 
 
