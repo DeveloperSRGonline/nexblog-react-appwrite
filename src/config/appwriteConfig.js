@@ -1,4 +1,4 @@
-const variables = {
+const appwriteConfig = {
   appwriteEndpoint: String(import.meta.env.VITE_APPWRITE_ENDPOINT),
   appwriteProjectID: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),
   appwriteDatabaseID: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
@@ -6,4 +6,4 @@ const variables = {
   appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
 };
 
-export default variables;
+export default appwriteConfig;
