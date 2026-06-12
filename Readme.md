@@ -42,14 +42,15 @@ _Features_
 - Form handling - `React-hook-form`
 - HTML Rendering in browser - `React-HTML-Parser`
 
-`Project create`  
- - `Auth`  
- - `Database`  
-`____`- `Articles`  
-`________`- `Documents[row]`  
-`________`- `attributes[columns]`  
- - `Storage`  
- - `Functions`
+`Project create`
+
+- `Auth`
+- `Database`  
+  `____`- `Articles`  
+  `________`- `Documents[row]`  
+  `________`- `attributes[columns]`
+- `Storage`
+- `Functions`
 
 - Variables prefixed with VITE\_ will be exposed in client-side source code after Vite bundling.
 
@@ -91,8 +92,8 @@ export class AuthService {
   client = new Client();
   account;
 
-    // if want to change service provider just need to change constructor and methods under the hood wrapper will same and app will run smoothly without any problem
-  constructor() { 
+  // if want to change service provider just need to change constructor and methods under the hood wrapper will same and app will run smoothly without any problem
+  constructor() {
     this.client
       .setEndpoint(appwriteConfig.appwriteEndpoint)
       .setProject(appwriteConfig.appwriteProjectID);
@@ -100,7 +101,8 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ email, password, name }) {// wrapper method
+  async createAccount({ email, password, name }) {
+    // wrapper method
     try {
       const userAccount = await this.account.create(
         ID.unique(),
@@ -109,7 +111,7 @@ export class AuthService {
       );
       if (userAccount) {
         // call another method that you create
-        // login({email,password})
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -131,5 +133,11 @@ export default authService;
 After an account is created, users can be logged in using the Create Email Session route.
 
 ```javascript
-
+async login({email,password}){
+        try {
+            return await this.account.createEmailPasswordSession(email,password)
+        } catch (error) {
+            throw error;
+        }
+    }
 ```
