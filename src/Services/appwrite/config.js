@@ -103,6 +103,18 @@ export class Service{
             return false
         }
     }
+
+    async deleteFile(fileId){
+        try {
+            await this.storage.deleteFile(
+                appwriteConfig.appwriteStorageId,
+                fileId
+            )
+        } catch (error) {
+            throw error
+            return false
+        }
+    }
 }
 
 
