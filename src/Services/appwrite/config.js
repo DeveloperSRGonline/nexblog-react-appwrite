@@ -77,6 +77,19 @@ export class Service{
             return false
         }
     }
+
+    async getPosts(queries = [Query.equal("status","active")]){
+        try {
+            return await this.databases.listDocuments(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                queries
+            )
+        } catch (error) {
+            throw error;
+            return false
+        }
+    }
 }
 
 
