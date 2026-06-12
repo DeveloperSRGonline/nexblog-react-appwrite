@@ -198,3 +198,104 @@ async createPost({title,slug,content,featuredImage,status,userId}){
         }
     }
 ```
+
+## update document
+
+```javascript
+async updatePost(slug,{title,content,featuredImage,status}){
+        try {
+            return await this.databases.updateDocument(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                slug,
+                {
+                    title,
+                    content,
+                    featuredImage,
+                    status
+                }
+            )
+        } catch (error) {
+            throw error;
+        }
+    }
+```
+
+## delete post
+
+```javascript
+async deletePost(slug){
+        try {
+            await this.databases.deleteDocument(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                slug
+            )
+            return true
+        } catch (error) {
+            throw error;
+            return false
+        }
+    }
+```
+
+## get post
+
+```javascript
+async getPost(slug){
+        try {
+            return await this.databases.getDocument(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                slug
+            )
+        } catch (error) {
+            throw error;
+            return false
+        }
+    }
+```
+
+## upload file
+
+```javascript
+async uploadFile(file){
+        try {
+            return await this.storage.createFile(
+                appwriteConfig.appwriteStorageId,
+                ID.unique(),
+                file
+            )
+        } catch (error) {
+            throw error
+            return false
+        }
+    }
+```
+
+## delete file
+
+```javascript
+async deleteFile(fileId){
+        try {
+            await this.storage.deleteFile(
+                appwriteConfig.appwriteStorageId,
+                fileId
+            )
+        } catch (error) {
+            throw error
+            return false
+        }
+    }
+```
+
+## get file preview
+
+```javascript
+async getFilePreview(fileId){
+        return this.storage.getFilePreview(
+            appwriteConfig.appwriteStorageId,
+            fileId
+        )
+    }
+```
