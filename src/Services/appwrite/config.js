@@ -115,6 +115,13 @@ export class Service{
             return false
         }
     }
+
+    async getFilePreview(fileId){
+        return this.storage.getFilePreview(
+            appwriteConfig.appwriteStorageId,
+            fileId
+        )
+    }
 }
 
 
