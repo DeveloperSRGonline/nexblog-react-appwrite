@@ -171,3 +171,30 @@ async Logout(){
         }
     }
 ```
+
+# Databases
+
+- The Databases service allows you to create structured collection of documents, query and filter lists of documents, and manage an advanced set of read and write access permissions.
+
+## Create document
+
+```javascript
+async createPost({title,slug,content,featuredImage,status,userId}){
+        try {
+            return await this.databases.createDocument  (
+                databaseId = appwriteConfig.appwriteDatabaseID,
+                collectionId = appwriteConfig.appwriteCollectionId,
+                documentId = slug,
+                {
+                    title,
+                    content,
+                    featuredImage,
+                    status,
+                    userId
+                }
+            )
+        } catch (error) {
+            throw error;
+        }
+    }
+```
