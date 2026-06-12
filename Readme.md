@@ -141,3 +141,19 @@ async login({email,password}){
         }
     }
 ```
+
+# GetCurrentUser
+
+When user directly go to home route we need to check is user exist or not ,who is present there
+
+```javascript
+async getCurrentUser(){
+        try {
+            return await this.account.get()
+        } catch (error) {
+            throw error
+        }
+
+        return null;
+    }
+```
