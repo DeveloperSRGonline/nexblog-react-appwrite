@@ -50,6 +50,20 @@ export class Service{
             throw error;
         }
     }
+
+    async deletePost(slug){
+        try {
+            await this.databases.deleteDocument(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                slug
+            )
+            return true
+        } catch (error) {
+            throw error;
+            return false
+        }
+    }
 }
 
 
