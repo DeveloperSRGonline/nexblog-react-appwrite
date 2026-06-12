@@ -17,15 +17,33 @@ export class Service{
     async createPost({title,slug,content,featuredImage,status,userId}){
         try {
             return await this.databases.createDocument  (
-                databaseId = appwriteConfig.appwriteDatabaseID,
-                collectionId = appwriteConfig.appwriteCollectionId,
-                documentId = slug,
+               appwriteConfig.appwriteDatabaseID,
+               appwriteConfig.appwriteCollectionId,
+               slug,
                 {
                     title,
                     content,
                     featuredImage,
                     status,
                     userId
+                }
+            )
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updatePost(slug,{title,content,featuredImage,status}){
+        try {
+            return await this.databases.updateDocument(
+                appwriteConfig.appwriteDatabaseID,
+                appwriteConfig.appwriteCollectionId,
+                slug,
+                {
+                    title,
+                    content,
+                    featuredImage,
+                    status
                 }
             )
         } catch (error) {
