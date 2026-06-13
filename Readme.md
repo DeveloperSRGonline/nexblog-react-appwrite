@@ -42,6 +42,84 @@ _Features_
 - Form handling - `React-hook-form`
 - HTML Rendering in browser - `React-HTML-Parser`
 
+## Redux (example from this repo)
+
+This project uses `@reduxjs/toolkit` for global state. Relevant files are under `src/store/`.
+
+`src/store/store.js`
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+import authSlice from "./authSlice";
+
+const store = configureStore({
+  reducer: {
+    authSlice,
+  },
+});
+
+export default store;
+```
+
+`src/store/authSlice.js`
+
+```javascript
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  status: false,
+  userData: null,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    login: (state, action) => {
+      state.status = true;
+      state.userData = action.payload.userData;
+    },
+    logout: (state, action) => {
+      state.status = false;
+      state.userData = null;
+    },
+  },
+});
+
+export const { login, logout } = authSlice.actions;
+
+export default authSlice.reducer;
+```
+
+Wrap the app with the Redux `Provider` in `src/main.jsx`:
+
+```javascript
+import { Provider } from "react-redux";
+import store from "./store/store.js";
+
+createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+);
+```
+
+Example usage in `src/App.jsx` (dispatching `login` / `logout` based on auth service):
+
+```javascript
+import { useDispatch } from "react-redux";
+import { login, logout } from "./store/authSlice";
+
+const dispatch = useDispatch();
+
+// after fetching current user
+if (userData) {
+  dispatch(login({ userData }));
+} else {
+  dispatch(logout());
+}
+```
+
 `Project create`
 
 - `Auth`
@@ -299,3 +377,22 @@ async getFilePreview(fileId){
         )
     }
 ```
+
+---
+
+**Recent changes (automated reflection)**
+
+The following is a short reflection of the most recent commits detected in the repository at the time this file was updated. This section is appended to help future README updates — it summarizes recent work that may require documentation updates (features added, config changes, new components, etc.).
+
+- add tailwindcss configuration
+- add redux store to application
+- add index.js file to bulk import and export in components folder
+- add stying updation basic
+- implement user authentication with loading state in App component
+- handle error in getCurrentUser method by logging and returning false
+- add Footer and Header components
+
+Notes:
+
+- These commit messages were gathered from the local Git reflog when the reflection was created. For precise per-day commit lists, run `git log --since="midnight" --pretty=format:"%h %ad %s" --date=local` locally and replace this summary with the filtered output.
+- I did not modify existing README content — this section was appended only.
