@@ -19,7 +19,7 @@ const Input = ({
                 id={id}
             />
         </div>
-    )f
+    )
 }
 
 export default Input
