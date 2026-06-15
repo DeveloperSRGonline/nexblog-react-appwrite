@@ -380,19 +380,27 @@ async getFilePreview(fileId){
 
 ---
 
-**Recent changes (automated reflection)**
+## Recent Commits (after 12:00 PM)
 
-The following is a short reflection of the most recent commits detected in the repository at the time this file was updated. This section is appended to help future README updates — it summarizes recent work that may require documentation updates (features added, config changes, new components, etc.).
+The following commits were made after 12 PM today. Each entry includes the commit hash, original commit message, a brief description of the code change, and a short note on what was learned or why the change matters.
 
-- add tailwindcss configuration
-- add redux store to application
-- add index.js file to bulk import and export in components folder
-- add stying updation basic
-- implement user authentication with loading state in App component
-- handle error in getCurrentUser method by logging and returning false
-- add Footer and Header components
+| Commit | Message | Summary |
+|--------|---------|---------|
+| `329ea4a` | add missing exports for Container, Logo, and LogoutButton components | Exported `Container`, `Logo`, and `LogoutButton` from `src/Components/index.js` to simplify imports across the app. |
+| `0c799b2` | fix Input component syntax error | Fixed JSX syntax errors in `Input.jsx`, ensuring the component renders correctly. |
+| `2dfdb1b` | add Button component for reusable button functionality | Created a reusable `Button` component for consistent UI actions. |
+| `ffb1358` | add Input component for user input handling | Implemented `Input` component to capture user text input. |
+| `6a0917e` | add LogoutButton component for user logout functionality | Added `LogoutButton` with logout logic tied to Redux auth slice. |
+| `2577854` | add Footer component with layout, branding, and navigation links | Built `Footer` component containing site navigation and branding. |
+| `4c86435` | add Container component for layout structure | Introduced `Container` component to provide a consistent page layout wrapper. |
+| `c79ad68` | add Logo component for branding display | Added `Logo` component for brand representation in the header/footer. |
+| `e3f09a1` | add Header component with navigation and authentication handling | Developed `Header` with navigation links and authentication state handling. |
 
-Notes:
+**Key takeaways**
 
-- These commit messages were gathered from the local Git reflog when the reflection was created. For precise per-day commit lists, run `git log --since="midnight" --pretty=format:"%h %ad %s" --date=local` locally and replace this summary with the filtered output.
-- I did not modify existing README content — this section was appended only.
+- Centralising component exports in `src/Components/index.js` reduces import boilerplate and improves maintainability.
+- Incremental component creation (Header, Footer, Container, etc.) clarifies the UI structure and encourages reusable design.
+- Consistent use of Redux Toolkit for auth state simplifies login/logout flows across components.
+- Small syntax fixes (e.g., JSX errors) can block rendering; thorough linting and type checking help catch them early.
+
+*To view a full commit log, run:* `git log --since="12:00" --pretty=format:"%h %ad %s" --date=local`
