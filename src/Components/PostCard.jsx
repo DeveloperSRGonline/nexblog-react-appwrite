@@ -18,5 +18,4 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
         </Link>
     )
 }
-f
 export default PostCard
