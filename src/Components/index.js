@@ -10,6 +10,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import RTE from "./RTE";
 import PostForm from "./PostForm.jsx";
+import PostCard from "./PostCard.jsx";
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   Signup,
   RTE,
   PostForm,
+  PostCard,
 };
