@@ -1,15 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+
+/* Premium ambient glows & animations */
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.35;
+    }
 }
 
-html,
-body {
-    height: 100%;
-    width: 100%;
-    background-color: #111;
-    color: wheat;
-    text-align: center
+.ambient-glow {
+    position: relative;
+    overflow: hidden;
 }
+.ambient-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+    animation: pulseGlow 8s infinite ease-in-out;
+}
+
+
+
+/* Custom scrollbar for premium aesthetics */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+}
+
+/* Premium rich text editor styles for blog posts */
+.browser-css {
+    color: #e4e4e7; /* zinc-200 */
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+.browser-css h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+}
+.browser-css h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+.browser-css h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.browser-css p {
+    margin-bottom: 1.5rem;
+}
+.browser-css ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.browser-css ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.browser-css li {
+    margin-bottom: 0.5rem;
+}
+.browser-css a {
+    color: #818cf8; /* indigo-400 */
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+.browser-css a:hover {
+    color: #a5b4fc; /* indigo-300 */
+}
+.browser-css blockquote {
+    border-left: 4px solid #6366f1; /* indigo-500 */
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: #a1a1aa; /* zinc-400 */
+    margin: 1.75rem 0;
+    background-color: rgba(24, 24, 27, 0.4);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.browser-css pre {
+    background-color: #18181b; /* zinc-900 */
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid #27272a;
+}
+.browser-css code {
+    font-family: monospace;
+    font-size: 0.875em;
+    color: #fda4af; /* rose-300 */
+    background-color: rgba(39, 39, 42, 0.6);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+}
+.browser-css pre code {
+    color: inherit;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
