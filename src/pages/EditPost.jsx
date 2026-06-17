@@ -9,16 +9,25 @@ const EditPost = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-      if(slug){
-        appWriteService.getPost(slug).then((post)=>{
-            if(post){
-                setPost(post)
-            }
-        })
-      }
-    })
+        if (slug) {
+            appWriteService.getPost(slug)
+                .then((post) => {
+                    if (post) {
+                        setPost(post)
+                    } else {
+                        navigate('/')
+                    }
+                })
+                .catch((error) => {
+                    console.log("Appwrite service :: getPost :: error", error)
+                    navigate('/')
+                })
+        } else {
+            navigate('/')
+        }
+    }, [slug, navigate])
   return post ? (
-    <div className='py-8'>
+    <div className='py-10'>
         <Container>
             <PostForm post={post} />
         </Container>

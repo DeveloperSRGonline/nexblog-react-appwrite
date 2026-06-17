@@ -5,6 +5,7 @@ import { login as storeLogin } from '../store/authSlice'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Logo } from './index'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
     const navitage = useNavigate()
@@ -18,29 +19,30 @@ const Signup = () => {
             const session = await authService.createAccount(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(storeLogin(data))
+                if (userData) dispatch(storeLogin({ userData }))
                 navitage("/")
             }
 
         } catch (error) {
-            setError(error.messagfe)
+            setError(error.message)
         }
     }
 
     return (
-        <div className='flex items-center justify-center'>
-            <div className='mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
-                <div className='mb-2 flex justify-center'>
-                    <span className='inline-block w-full max-w-250'>
+        <div className='flex items-center justify-center w-full py-12 px-4 min-h-screen ambient-glow'>
+            <div className='relative z-10 mx-auto w-full max-w-md bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-2xl p-10 md:p-12 shadow-2xl text-left'>
+                <div className='mb-8 flex justify-center'>
+                    <span className='inline-block w-full max-w-60'>
                         <Logo width="100%" />
                     </span>
                 </div>
-                <h2 className='mb-2 text-2xl font-bold text-center text-gray-800'>Signup</h2>
-                <p className='mb-4 text-sm text-center text-gray-600'>
-                    Already have an account?<Link to="/login" className='text-blue-600 hover:underline'>Login</Link>
+                <h2 className='mb-2 text-3xl font-extrabold text-center text-zinc-100 tracking-tight'>Create Account</h2>
+                <p className='mb-6 text-sm text-center text-zinc-400'>
+                    Already have an account?&nbsp;
+                    <Link to="/login" className='font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-200 hover:underline'>Login</Link>
                 </p>
-                {error && <p className='mb-4 text-sm text-center text-red-600'>{error}</p>}
-                <form onSubmit={handleSubmit(create)}>
+                {error && <p className='mb-6 text-sm text-center text-red-400 bg-red-500/10 border-2 border-red-500/30 px-4 py-2.5 rounded-lg font-medium'>{error}</p>}
+                <form onSubmit={handleSubmit(create)} className="space-y-6">
                     <Input
                         label="Name"
                         type="text"
@@ -69,7 +71,7 @@ const Signup = () => {
                         })}
                     />
                     <div className='mt-6'>
-                        <Button text="Signup" />
+                        <Button type="submit" className="w-full">Sign Up</Button>
                     </div>
                 </form>
             </div>

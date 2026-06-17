@@ -1,13 +1,10 @@
 import React from 'react'
 import { Container, Logo, LogoutButton } from "../index.js"
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const authStatus = useSelector((state) => state.authSlice.status)
-  console.log(authStatus)
-  const navigate = useNavigate()
 
   const navItem = [
     { name: "Home", slug: "/", active: true },
@@ -17,36 +14,42 @@ const Header = () => {
     { name: "Add Post", slug: "/add-post", active: authStatus },
   ]
   return (
-    <div
-      className='bg-gray-800 text-white flex justify-between items-center p-4'
+    <header
+      className='sticky top-0 z-50 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/80 text-zinc-100 py-3.5 transition-all duration-300'
     >
       <Container>
-        <nav className='flex'>
-          <div className='mr-4'>
-            <Link width="70px">
+        <nav className='flex items-center justify-between'>
+          <div className='flex items-center'>
+            <Link to="/" className="flex items-center transition-opacity hover:opacity-90">
               <Logo />
             </Link>
           </div>
-          <ul className='flex ml-auto'>
+          <ul className='flex items-center gap-2 ml-auto'>
             {navItem.map((item) =>
             (item.active ? (
               <li key={item.name}>
-                <button
-                  className='inline-bock px-6 py-2 duration-200 hover:bg-blue-600 rounded-full'
-                  onClick={() => navigate(item.slug)}
-                >{item.name}</button>
+                <NavLink
+                  to={item.slug}
+                  className={({ isActive }) =>
+                    `inline-block px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-200 ${
+                      isActive 
+                        ? "bg-indigo-600/15 text-indigo-400 border border-indigo-500/20 shadow-sm shadow-indigo-500/5" 
+                        : "text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800/40 border border-transparent"
+                    }`
+                  }
+                >{item.name}</NavLink>
               </li>
             ) : null)
             )}
             {authStatus && (
-              <li>
+              <li className="ml-1">
                 <LogoutButton />
               </li>
             )}
           </ul>
         </nav>
       </Container>
-    </div>
+    </header>
   )
 }
 

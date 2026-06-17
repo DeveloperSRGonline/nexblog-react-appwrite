@@ -10,17 +10,23 @@ const Select = ({
     const id = useId()
 
     return (
-        <div className='w-full'>
-            {label && <label htmlFor={id} className={className}>
-            </label>}
+        <div className='w-full text-left'>
+            {label && (
+                <label 
+                    htmlFor={id} 
+                    className="inline-block mb-1.5 pl-1 text-sm font-semibold text-zinc-300"
+                >
+                    {label}
+                </label>
+            )}
             <select 
-            {...props}
-            id={id}
-            ref={ref}
-            className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className} `}
+                {...props}
+                id={id}
+                ref={ref}
+                className={`px-4 py-2.5 rounded-xl bg-zinc-900 text-zinc-100 outline-none border border-zinc-800/80 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/15 transition-all duration-200 w-full cursor-pointer ${className}`}
             >
                 {options?.map((option) => (
-                    <option key={option}>
+                    <option key={option} className="bg-zinc-900 text-zinc-100">
                         {option}
                     </option>
                 ))}
