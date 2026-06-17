@@ -4,6 +4,7 @@ import authService from "./Services/appwrite/auth.service"
 import { login,logout } from './store/authSlice'
 import { Header } from './Components'
 import Footer from './Components/Footer/Footer'
+import { Outlet } from 'react-router-dom'
 
 const App = () => {
   const [loading,setLoading] = useState(true)
@@ -19,17 +20,15 @@ const App = () => {
       }
     })
     .finally(() => setLoading(false))
-  })
+  }, [dispatch])
 
-  return !loading ? <div className='min-h-screen flex flex-wrap content-between bg-gray-900'>
-    <div className='w-full block'>
-      <Header />
-      <main>
-
-      </main>
-      <Footer />
-    </div>
-  </div> : <div>Loading...</div>
+  return !loading ? <div className='min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-indigo-200'>
+    <Header />
+    <main className="grow flex flex-col w-full">
+      <Outlet />
+    </main>
+    <Footer />
+  </div> : <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-zinc-400 text-lg font-medium">Loading...</div>
 }
 
 export default App
