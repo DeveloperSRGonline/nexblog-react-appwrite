@@ -16,7 +16,7 @@ const PostForm = ({ post }) => {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector((state) => state.authSlice.userData)
+    const userData = useSelector((state) => state.auth.userData)
 
     // when user submit data
     const submit = async (data) => {
@@ -39,10 +39,11 @@ const PostForm = ({ post }) => {
             if (file) {
                 const fileId = file.$id
                 data.featuredImage = fileId
-                await appWriteService.createPost({
+                const dbPost = await appWriteService.createPost({
                     ...data,
                     userId: userData.$id // user ki id kisne post banaya
                 })
+                if(dbPost) navigate(`/post/${dbPost.$id}`)
             }
         }
     }
