@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 const Protected = ({children,authentication = true}) => {
   const navigate = useNavigate()
-  const authStatus = useSelector((state) => state.authSlice.status)
+  const authStatus = useSelector((state) => state.auth.status)
 
   useEffect(() => {
     if(authentication && authStatus === false){
