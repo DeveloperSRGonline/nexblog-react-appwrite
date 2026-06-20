@@ -116,8 +116,9 @@ export class Service{
         }
     }
 
-    async getFilePreview(fileId){
-        return this.storage.getFilePreview(
+    getFilePreview(fileId){
+        if (!fileId) return "";
+        return this.storage.getFileView(
             appwriteConfig.appwriteStorageId,
             fileId
         )
